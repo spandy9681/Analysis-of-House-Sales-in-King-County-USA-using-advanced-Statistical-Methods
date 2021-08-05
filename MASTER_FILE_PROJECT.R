@@ -122,7 +122,7 @@ plot(sqft_basement,price,xlab="Area of basement",main="Fitting smoothing spline"
 lines(smooth.spline(sqft_basement,price))#---fitting smoothing spline---
 #----choose the degree the of polynomial by comparing measure of optimism viz AIC,BIC or CV---
 cv.error.10 = numeric(10);a=numeric(10);b=numeric(10)
-for(i in 1:5)
+for(i in 1:10)
 {
   a[i]=AIC(lm(price~poly(sqft_basement,i,raw=T)))
   b[i]=BIC(lm(price~poly(sqft_basement,i,raw=T)))
