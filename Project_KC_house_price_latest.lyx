@@ -1,0 +1,3688 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "lmss" "default"
+\font_typewriter "lmtt" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 2cm
+\rightmargin 3cm
+\bottommargin 2cm
+\headheight 3cm
+\headsep 3cm
+\footskip 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Data Analysis Project
+\end_layout
+
+\begin_layout Author
+Arijit Naskar & Spandan Ghoshal
+\end_layout
+
+\begin_layout Section*
+Introduction 
+\end_layout
+
+\begin_layout Standard
+In this project, we analyze the 
+\begin_inset Quotes eld
+\end_inset
+
+House Sales in King County, USA
+\begin_inset Quotes erd
+\end_inset
+
+ dataset.
+ This dataset contains house sale prices for King County, which includes
+ Seattle during the time period May 2014 and May 2015.
+ The dataset observations on 21613 many observations on the variables :-
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+price
+\series default
+ : Price is prediction target
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+bedrooms
+\series default
+ : Number of bedrooms
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+bathrooms
+\series default
+ : Number of bathrooms
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+sqft_living 
+\series default
+: Square footage of the home
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+sqft_lot
+\series default
+ : Square footage of the lot
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+floors 
+\series default
+: Total floors (levels) in house
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+waterfront 
+\series default
+: House which has a view to a waterfront
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+view
+\series default
+ : Has been viewed
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+condition
+\series default
+ : How good the condition is overall
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+grade 
+\series default
+: overall grade given to the housing unit, based on King County grading
+ system
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+sqft_above 
+\series default
+: Square footage of house apart from basement
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+sqft_basement
+\series default
+ : Square footage of the basement
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+yr_built 
+\series default
+: Built Year
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+yr_renovated 
+\series default
+: Year when house was renovated
+\end_layout
+
+\begin_layout Standard
+We applied various statistical tools to predict the price of a house.
+ We divided the data analysis into two parts.
+ Firstly we performed the exploratory analysis where we analyzed the data
+ by drawing suitable diagrams to depict some dependence of price on different
+ predictors and then made some crucial observations from there.
+ Finally, to make conclusions based on statistical tools i.e testing of hypothesi
+s, inference, estimation and various other regression methods, we answered
+ to some of the observations we made earlier.
+\end_layout
+
+\begin_layout Subsection*
+Importing the dataset
+\end_layout
+
+\begin_layout Standard
+We import the dataset using R as follows :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Data_House = read.table("E:
+\backslash
+
+\backslash
+Dekstop
+\backslash
+
+\backslash
+Project_Data_analysis_IITK
+\backslash
+
+\backslash
+kc_house_data_to_be_used.csv",header = TRUE,sep = ",")
+\end_layout
+
+\begin_layout Plain Layout
+
+head(Data_House)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Checking presence of missing observations
+\end_layout
+
+\begin_layout Standard
+We use the function is.na() to detect whether there is any missing observation
+ in the given dataset or not as :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+sum(is.na(Data_House)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+since there is no such missing observation, hence, we don't need to apply
+ any data imputation techniques here and it makes the analysis little simpler.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Data type of each predictors
+\end_layout
+
+\begin_layout Standard
+First we check the names of each and every variable present in teh dataset
+ as :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+vec_names = names(Data_House)
+\end_layout
+
+\begin_layout Plain Layout
+
+vec_names
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To get an idea about each of them, we use the summary() function :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data_summary = summary(Data_House)
+\end_layout
+
+\begin_layout Plain Layout
+
+data_summary
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+str() function also gives us some idea about the nature of each variable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+str(Data_House)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Observation :- 
+\end_layout
+
+\begin_layout Quote
+From the summary outputs for different variable, we can see that there might
+ be potential outliers in the data as the ranges for some of the variables
+ vary tremendously so checking presence of any outliers will be of great
+ help in this case.
+\end_layout
+
+\begin_layout Subsection*
+Barplot for different integer valued variables
+\end_layout
+
+\begin_layout Standard
+We plot the bar diagrams for different count datas :-
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/Boxplot Of Different Count variables.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Histograms Plots
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/Histogram Plots.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Boxplots
+\end_layout
+
+\begin_layout Standard
+We plot the boxplots of price for different integer valued variables :-
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/boxplot_1.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/Boxplot_2.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Observation :- 
+\end_layout
+
+\begin_layout Standard
+From the boxplots, we can see that in some of the plots, the price increases
+ with increasing value of the other covariate like number of bedrooms, bathrooms
+, waterfront, view, condition, grade etc.
+ We would perform ANOVA test to detect significant differences in price
+ for different values of these covariates.
+\end_layout
+
+\begin_layout Section*
+Confirmatory Data Analysis
+\end_layout
+
+\begin_layout Standard
+Loading all the packages required for analysis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(1000)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(readr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(splines)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(glmnet)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(boot)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(leaps)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(tidyverse)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(caret)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggplot2)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(ggpubr)
+\end_layout
+
+\begin_layout Plain Layout
+
+library(magrittr)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Outlier Treatment
+\end_layout
+
+\begin_layout Standard
+We use cook's distance for detecting any potential outlier in the data.
+ We plot the cook's distance for each observation in a scatter plot w.r.t
+ their indexes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T,fig=T,fig.height = 5,fig.width = 5>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+mod <- lm(price ~ ., data=Data_House)
+\end_layout
+
+\begin_layout Plain Layout
+
+cooksd <- cooks.distance(mod)
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(cooksd, pch="*", cex=2, main="Influential Obs by Cooks distance") 
+ # plot cook's distance
+\end_layout
+
+\begin_layout Plain Layout
+
+abline(h = 4*mean(cooksd, na.rm=T), col="red")  # add cutoff line
+\end_layout
+
+\begin_layout Plain Layout
+
+text(x=1:length(cooksd)+1, y=cooksd, labels=ifelse(cooksd>4*mean(cooksd,
+ na.rm=T),names(cooksd),""), col="red")  # add labels
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We detect potential by choosing those observations which are greater than
+ 
+\begin_inset Formula $4$
+\end_inset
+
+ times average cook's distance.
+ (some of the indexes of those outliers are given below)
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_outlier = (cooksd>4*mean(cooksd, na.rm=T))
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_out = which(ind_outlier == TRUE)
+\end_layout
+
+\begin_layout Plain Layout
+
+head(ind_out)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+length(ind_out)
+\end_layout
+
+\begin_layout Plain Layout
+
+Data_House_1 = Data_House[-ind_out,]
+\end_layout
+
+\begin_layout Plain Layout
+
+dim(Data_House_1)
+\end_layout
+
+\begin_layout Plain Layout
+
+attach(Data_House_1)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For comparison, we plot the scatter plots of price vs sqft living as shown
+ :-
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/Outlier_treatment.pdf
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We should find the impact of the quantitative variables on the price of
+ the houses separately.
+\end_layout
+
+\begin_layout Subsection*
+Price vs Area of Basement
+\end_layout
+
+\begin_layout Standard
+We obtain the impact of area of basement on the price of the houses.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+lr=lm(price~sqft_basement) 
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(lr)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The linear model is,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{i}=a+bx_{i}+e_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where,
+\begin_inset Formula $y_{i}=$
+\end_inset
+
+ Price of 
+\begin_inset Formula $i$
+\end_inset
+
+ th house and 
+\begin_inset Formula $x=$
+\end_inset
+
+ area of basement of the 
+\begin_inset Formula $i$
+\end_inset
+
+ th house, 
+\begin_inset Formula $i=1,2,..,21613$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We set the null hypothesis,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H_{0}:b=0\text{ vs }H_{1}:b\neq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value of the hypothesis is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+Then we can conclude that 
+\series bold
+the area of basement of the houses have significant effect of the linear
+ regression of price
+\series default
+ .
+\end_layout
+
+\begin_layout Standard
+The fitted linear regression is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/Basement_Price.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To get more precise relation between price and the area of the basements,we
+ fitted both 
+\series bold
+Box
+\series default
+ 
+\series bold
+kernel regression
+\series default
+ and 
+\series bold
+Gaussian kernel regression.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/Kernel_Basement.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The fitted 
+\series bold
+spline regression
+\series default
+ of the price on the area of basement using 
+\series bold
+smoothing spline,
+\series default
+ is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/spline_basement.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have the linear regression of the price on the area of basement.
+ Further,we are interested in fitting a 
+\series bold
+polynomial regression 
+\series default
+with appropriate degree.
+\end_layout
+
+\begin_layout Standard
+In order to determine the appropriate degree of the polynomial regression,we
+ can fit the polynomial regression model with different degrees and then
+ minimize the measure of optimism.
+ We can obtain the measure of optimism using 
+\series bold
+Akaike information criterion(AIC), Bayesian information criterion(BIC) 
+\series default
+and 
+\series bold
+Cross-validation 
+\series default
+method
+\series bold
+.
+\end_layout
+
+\begin_layout Standard
+The value of 
+\series bold
+Cross validation error 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/CV_sqft_basement.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Cross Validation 
+\series default
+method suggest that we should fit a second degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement 
+\end_layout
+
+\begin_layout Standard
+The value of AIC
+\series bold
+ 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/AIC_values.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+AIC 
+\series default
+method suggest that we should fit a ten degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+The value of 
+\series bold
+BIC 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/BIC_values_sqft_basement.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+BIC 
+\series default
+method suggest that we should fit a second degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Cross Validation method 
+\series default
+is the most accurate method among the given methods.
+ Since, two of the methods suggest to fit a second degree polynomial hence,
+ we should fit a second degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/2nd_Degree_sqft_basement.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Price vs Area Above
+\end_layout
+
+\begin_layout Standard
+We obtain the impact of area of above on the price of the houses.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+lr=lm(price~sqft_above) 
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(lr)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The linear model is,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{i}=a+bx_{i}+e_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where,
+\begin_inset Formula $y_{i}=$
+\end_inset
+
+ Price of i th house and 
+\begin_inset Formula $x$
+\end_inset
+
+=area of above of the 
+\begin_inset Formula $i$
+\end_inset
+
+ th house, 
+\begin_inset Formula $i=1,2,..,21613$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We set the null hypothesis,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H_{0}:b=0\text{ vs }H_{1}:b\neq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value of the hypothesis is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+Then we can conclude that 
+\series bold
+the area of above of the houses have significant effect of the linear regression
+ of price
+\series default
+ .
+\end_layout
+
+\begin_layout Standard
+The fitted linear regression is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/linear_reg_area_basement.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To get more precise relation between price and the area of the above,we
+ fitted both 
+\series bold
+Box
+\series default
+ 
+\series bold
+kernel regression
+\series default
+ and 
+\series bold
+Gaussian kernel regression.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/kernels_Area_Above.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The fitted 
+\series bold
+spline regression
+\series default
+ of the price on the area of the above using 
+\series bold
+smoothing spline,
+\series default
+ is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/spline_area_above.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have the linear regression of the price on the area of above.Further,we
+ are interested in fitting a 
+\series bold
+polynomial regression 
+\series default
+with appropriate degree.
+\end_layout
+
+\begin_layout Standard
+In order to determine the appropriate degree of the polynomial regression,we
+ can fit the polynomial regression model with different degrees and then
+ minimize the measure of optimism.We can obtain the measure of optimism using
+ 
+\series bold
+Akaike information criterion(AIC),Bayesian information criterion(BIC) 
+\series default
+and 
+\series bold
+Cross-validation 
+\series default
+method
+\series bold
+.
+\end_layout
+
+\begin_layout Standard
+The value of 
+\series bold
+Cross validation error 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/CV_Sqft_above.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Cross Validation 
+\series default
+method suggest that we should fit a second degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement 
+\end_layout
+
+\begin_layout Standard
+The value of AIC
+\series bold
+ 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/AIC.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+AIC 
+\series default
+method suggest that we should fit a ten degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+The value of 
+\series bold
+BIC 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/BIC.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+BIC 
+\series default
+method suggest that we should fit a six degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Cross Validation method 
+\series default
+is the most accurate method among the given methods.Thus,we should fit a
+ two degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Subsection*
+Price vs Sqft Lot
+\end_layout
+
+\begin_layout Standard
+We obtain the impact of area of lot on the price of the houses.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+lr=lm(price~sqft_lot) 
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(lr)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The linear model is,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{i}=a+bx_{i}+e_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where, 
+\begin_inset Formula $y_{i}=$
+\end_inset
+
+ Price of 
+\begin_inset Formula $i$
+\end_inset
+
+ th house and 
+\begin_inset Formula $x=$
+\end_inset
+
+ area of lot of the 
+\begin_inset Formula $i$
+\end_inset
+
+ th house, 
+\begin_inset Formula $i=1,2,..,21613$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We set the null hypothesis,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H_{0}:b=0\text{ vs }H_{1}:b\neq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value of the hypothesis is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+Then we can conclude that 
+\series bold
+the area of lot of the houses have significant effect of the linear regression
+ of price
+\series default
+ .
+\end_layout
+
+\begin_layout Standard
+The fitted linear regression is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/linear_area_lot.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To get more precise relation between price and the area of the basements,we
+ fitted both 
+\series bold
+Box
+\series default
+ 
+\series bold
+kernel regression
+\series default
+ and 
+\series bold
+Gaussian kernel regression.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/kernel_lot.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The fitted 
+\series bold
+spline regression
+\series default
+ of the price on the area of basement using 
+\series bold
+smoothing spline,
+\series default
+ is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/spline.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have the linear regression of the price on the area of basement.Further,we
+ are interested in fitting a 
+\series bold
+polynomial regression 
+\series default
+with appropriate degree.
+\end_layout
+
+\begin_layout Standard
+In order to determine the appropriate degree of the polynomial regression,we
+ can fit the polynomial regression model with different degrees and then
+ minimize the measure of optimism.We can obtain the measure of optimism using
+ 
+\series bold
+Akaike information criterion(AIC),Bayesian information criterion(BIC) 
+\series default
+and 
+\series bold
+Cross-validation 
+\series default
+method
+\series bold
+.
+\end_layout
+
+\begin_layout Standard
+The value of 
+\series bold
+Cross validation error 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/cv_lot.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Cross Validation 
+\series default
+method suggest that we should fit a second degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement 
+\end_layout
+
+\begin_layout Standard
+The value of AIC
+\series bold
+ 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/aic_lot.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+AIC 
+\series default
+method suggest that we should fit a ten degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The value of 
+\series bold
+BIC 
+\series default
+of the different degrees of polynomial model is as follows,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figure/bic_plot.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\series bold
+BIC 
+\series default
+method suggest that we should fit a six degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Cross Validation method 
+\series default
+is the most accurate method among the given methods.Thus,we should fit a
+ six degree 
+\series bold
+polynomial regression
+\series default
+ of price on area of basement.
+\end_layout
+
+\begin_layout Standard
+Now,we should find the impact of the qualitative variables on the price
+ of the house using 
+\series bold
+ANOVA 
+\series default
+method.
+\end_layout
+
+\begin_layout Standard
+We obtain the effect of number of bedrooms on the price of the house.
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+ANOVA 
+\series default
+model is,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{ij}=\alpha+\mu_{i}+e_{ij},i=1,2,..,n_{i},j=1,2,.12
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here,
+\begin_inset Formula $y_{ij}=\text{price of }j$
+\end_inset
+
+th house with i number of bedrooms.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mu_{i}=$
+\end_inset
+
+additional effect of number of bedrooms on the price.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n_{i}=$
+\end_inset
+
+number of houses with i number of bedrooms
+\end_layout
+
+\begin_layout Standard
+We set the null hypothesis,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H_{0}:\mu_{1}=\mu_{1}=\mu_{2}=..=\mu_{12}=0\text{ vs }H_{1}:H_{0}\text{is not true}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(bedrooms)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+Thus,we can conclude that
+\series bold
+ number of bedrooms has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+We obtain the effect of number of bathrooms on the price of the house.
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(bathrooms)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+Thus,we can conclude that
+\series bold
+ number of bathrooms has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We obtain the effect of number of floors on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(floors)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that
+\series bold
+ number of floors has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We obtain the effect of waterfront on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(waterfront)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that
+\series bold
+ waterfront has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We obtain the effect of view on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(view)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that
+\series bold
+ view has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We obtain the effect of condtion on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(condition)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that
+\series bold
+ condition has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We obtain the effect of grade on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(grade)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that 
+\series bold
+grade has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We obtain the effect of renovation indicator on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+renovation_indicator=as.integer(yr_renovated>0) 
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(renovation_indicator)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that
+\series bold
+ renovation indicator has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We obtain the effect of number of bathrooms on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\series bold
+ANOVA 
+\series default
+table is given by,
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(aov(price~as.factor(bedrooms)))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The p value is less than 0.05.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus,we can conclude that
+\series bold
+ number of bathrooms has significant effect on the price of the house.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Multivariate Models and Selection of Optimum Models
+\end_layout
+
+\begin_layout Standard
+Before fitting any model,we check whether some of the covariates are highly
+ correlated or not i.e.
+ if there is any multicollinearity present.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+model <- lm(price~.,data=Data_House_1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then we use vif() function to calculate the vif values for different predictors
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(
+\begin_inset Quotes eld
+\end_inset
+
+car
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+vif(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+the output means that there are some variables present which have perfect
+ linear relationship i.e.
+ perfect multicollinearity.
+ To detect this we use alias() function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+alias(model)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+since the values are 1,-1 for the predictors sqft_living and sqft_above
+ hence, we examine them carefully and notice that sqft_living is actually
+ equal to sqft_above+sqft_base.
+ So we remove the column sqft_living as it is a redundant information.
+ Then we fit the model again.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Data_House_2 = Data_House_1[,-4]
+\end_layout
+
+\begin_layout Plain Layout
+
+model1 <- lm(price~.,data=Data_House_2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+summary(model1)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This gives the same value of 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Forward Subset Selection
+\end_layout
+
+\begin_layout Standard
+Now, we use forward selection method to select optimum models with different
+ number of covariates as follows :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+regfit.fwd = regsubsets(price~.,data = Data_House_2,method = "forward",nvmax
+ = 12)
+\end_layout
+
+\begin_layout Plain Layout
+
+reg_summary_fwd = summary(regfit.fwd)
+\end_layout
+
+\begin_layout Plain Layout
+
+reg_summary_fwd$outmat
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_num = list()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, to select the 
+\begin_inset Quotes eld
+\end_inset
+
+best
+\begin_inset Quotes erd
+\end_inset
+
+ model among all the optimum models with different number of covariates,
+ we use different criterions like 
+\begin_inset Formula $R^{2},RSS,R_{adj}^{2},Mallow's-C_{p},BIC\text{ and }CV(10-fold)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T,warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_num = list()
+\end_layout
+
+\begin_layout Plain Layout
+
+cv.error.12 = rep(0,12)
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:12)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  ind = as.integer(reg_summary_fwd$outmat[i,] == "*")
+\end_layout
+
+\begin_layout Plain Layout
+
+  ind_num[[i]] = which(ind == 1) + 1
+\end_layout
+
+\begin_layout Plain Layout
+
+  glm.fit = glm(price~.
+ ,data=Data_House_2[,c(1,ind_num[[i]])])
+\end_layout
+
+\begin_layout Plain Layout
+
+  cv.error.12[i] = cv.glm(Data_House_1 ,glm.fit,K = 10)$delta[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Values of 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ for different models :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_fwd$rsq,type = "l",ylab = expression(RSS)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Value of Residual Sum of squares
+\begin_inset Formula $\left(RSS\right)$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_fwd$rss,type = "l",ylab = expression(RSS)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+That of the adjusted
+\begin_inset Formula $-R^{2}$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_fwd$adjr2,type = "l",ylab = expression(paste(R^2,"adj")))
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{Mallow's}-C_{p}$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_fwd$cp,type = "l",ylab = expression(C(p))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $BIC$
+\end_inset
+
+ values :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_fwd$bic,type = "l",ylab = 
+\begin_inset Quotes eld
+\end_inset
+
+BIC
+\begin_inset Quotes erd
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $10-\text{fold CV}$
+\end_inset
+
+ values :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(cv.error.12,type = "l",ylab = 
+\begin_inset Quotes eld
+\end_inset
+
+CV
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hence, the forward subset selection selects the model :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+opt_ind = which.min(cv.error.12)
+\end_layout
+
+\begin_layout Plain Layout
+
+opt_ind
+\end_layout
+
+\begin_layout Plain Layout
+
+glm.fit.opt = glm(price~.
+ ,data=Data_House_2[,c(1,ind_num[[opt_ind]])])
+\end_layout
+
+\begin_layout Plain Layout
+
+glm.fit.opt
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Backward Subset Selection
+\end_layout
+
+\begin_layout Standard
+Now, we use backward selection method to select optimum models with different
+ number of covariates as follows :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+regfit.bwd = regsubsets(price~.,data = Data_House_2,method = "backward",nvmax
+ = 12)
+\end_layout
+
+\begin_layout Plain Layout
+
+reg_summary_bwd = summary(regfit.bwd)
+\end_layout
+
+\begin_layout Plain Layout
+
+reg_summary_bwd$outmat
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_num = list()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, to select the 
+\begin_inset Quotes eld
+\end_inset
+
+best
+\begin_inset Quotes erd
+\end_inset
+
+ model among all the optimum models with different number of covariates,
+ we use different criterions like 
+\begin_inset Formula $R^{2},RSS,R_{adj}^{2},Mallow's-C_{p},BIC\text{ and }CV(10-fold)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T,warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_num = list()
+\end_layout
+
+\begin_layout Plain Layout
+
+cv.error.12 = rep(0,12)
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:12)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  ind = as.integer(reg_summary_bwd$outmat[i,] == "*")
+\end_layout
+
+\begin_layout Plain Layout
+
+  ind_num[[i]] = which(ind == 1) + 1
+\end_layout
+
+\begin_layout Plain Layout
+
+  glm.fit = glm(price~.
+ ,data=Data_House_2[,c(1,ind_num[[i]])])
+\end_layout
+
+\begin_layout Plain Layout
+
+  cv.error.12[i] = cv.glm(Data_House_1 ,glm.fit,K = 10)$delta[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Values of 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ for different models :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_bwd$rsq,type = "l",ylab = expression(RSS)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Value of Residual Sum of squares
+\begin_inset Formula $\left(RSS\right)$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_bwd$rss,type = "l",ylab = expression(RSS)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+That of the adjusted
+\begin_inset Formula $-R^{2}$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_bwd$adjr2,type = "l",ylab = expression(paste(R^2,"adj")))
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{Mallow's}-C_{p}$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_bwd$cp,type = "l",ylab = expression(C(p))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $BIC$
+\end_inset
+
+ values :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_bwd$bic,type = "l",ylab = 
+\begin_inset Quotes eld
+\end_inset
+
+BIC
+\begin_inset Quotes erd
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $10-\text{fold CV}$
+\end_inset
+
+ values :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(cv.error.12,type = "l",ylab = 
+\begin_inset Quotes eld
+\end_inset
+
+CV
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hence, the backward subset selection selects the model :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+opt_ind = which.min(cv.error.12)
+\end_layout
+
+\begin_layout Plain Layout
+
+opt_ind
+\end_layout
+
+\begin_layout Plain Layout
+
+glm.fit.opt = glm(price~.
+ ,data=Data_House_2[,c(1,ind_num[[opt_ind]])])
+\end_layout
+
+\begin_layout Plain Layout
+
+glm.fit.opt
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Best Subset Selection
+\end_layout
+
+\begin_layout Standard
+Finally, we use best selection method to select optimum models with different
+ number of covariates as follows :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+regfit = regsubsets(price~.,data = Data_House_2,nvmax = 12)
+\end_layout
+
+\begin_layout Plain Layout
+
+reg_summary= summary(regfit.bwd)
+\end_layout
+
+\begin_layout Plain Layout
+
+reg_summary$outmat
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_num = list()
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, to select the 
+\begin_inset Quotes eld
+\end_inset
+
+best
+\begin_inset Quotes erd
+\end_inset
+
+ model among all the optimum models with different number of covariates,
+ we use different criterions like 
+\begin_inset Formula $R^{2},RSS,R_{adj}^{2},Mallow's-C_{p},BIC\text{ and }CV(5-fold)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T,warning=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ind_num = list()
+\end_layout
+
+\begin_layout Plain Layout
+
+cv.error.12 = rep(0,12)
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i in 1:12)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  ind = as.integer(reg_summary$outmat[i,] == "*")
+\end_layout
+
+\begin_layout Plain Layout
+
+  ind_num[[i]] = which(ind == 1) + 1
+\end_layout
+
+\begin_layout Plain Layout
+
+  glm.fit = glm(price~.
+ ,data=Data_House_2[,c(1,ind_num[[i]])])
+\end_layout
+
+\begin_layout Plain Layout
+
+  cv.error.12[i] = cv.glm(Data_House_1 ,glm.fit,K = 5)$delta[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Values of 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ for different models :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary$rsq,type = "l",ylab = expression(RSS)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Value of Residual Sum of squares
+\begin_inset Formula $\left(RSS\right)$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary$rss,type = "l",ylab = expression(RSS)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+That of the adjusted
+\begin_inset Formula $-R^{2}$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary$adjr2,type = "l",ylab = expression(paste(R^2,"adj"))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\text{Mallow's}-C_{p}$
+\end_inset
+
+ :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary$cp,type = "l",ylab = expression(C(p))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $BIC$
+\end_inset
+
+ values :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(reg_summary_bwd$bic,type = "l",ylab = 
+\begin_inset Quotes eld
+\end_inset
+
+BIC
+\begin_inset Quotes erd
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $5-\text{fold CV}$
+\end_inset
+
+ values :-
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(cv.error.12,type = "l",ylab = 
+\begin_inset Quotes eld
+\end_inset
+
+CV
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hence, the best subset selection selects the model :-
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<comment=NA,eval=T>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+opt_ind = which.min(cv.error.12)
+\end_layout
+
+\begin_layout Plain Layout
+
+opt_ind
+\end_layout
+
+\begin_layout Plain Layout
+
+glm.fit.opt = glm(price~.
+ ,data=Data_House_2[,c(1,ind_num[[opt_ind]])])
+\end_layout
+
+\begin_layout Plain Layout
+
+glm.fit.opt
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
